@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function App() {
+export default function YYAppHeader() {
     return (
         <div>
-            App
+            yyapp
         </div>
     )
 }
