@@ -4,10 +4,13 @@ import React, { memo, Suspense } from 'react';
 import { renderRoutes } from 'react-router-config';
 // 基础路由模式，引入hash模式
 import { HashRouter } from 'react-router-dom';
+// 共享数据
+import { Provider } from 'react-redux';
 
 
 // 全局路由信息
-import routes from '@/router'
+import routes from '@/router';
+import store from '@/store'
 
 import YYAppHeader from '@/components/app-header';
 import YYAppFooter from '@/components/app-footer';
@@ -15,12 +18,15 @@ import YYAppFooter from '@/components/app-footer';
 
 export default memo(function App() {
     return (
-        <HashRouter>
-            <YYAppHeader />
-            <Suspense fallback={<div>page loading</div>}>
-                {renderRoutes(routes)}
-            </Suspense>
-            <YYAppFooter />
-        </HashRouter>
+        <Provider store={store}>
+            <HashRouter>
+                <YYAppHeader />
+                <Suspense fallback={<div>page loading</div>}>
+                    {renderRoutes(routes)}
+                </Suspense>
+                <YYAppFooter />
+            </HashRouter>
+        </Provider>
+
     )
 })
