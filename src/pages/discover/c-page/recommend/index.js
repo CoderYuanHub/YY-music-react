@@ -1,32 +1,11 @@
-import React, { memo, useEffect } from 'react'
-import { useSelector, useDispatch, shallowEqual } from 'react-redux';
+import React, { memo } from 'react';
 
-import { getTopBannerAction } from './store/actionCreators';
-// import { getHotRecommendAction } from './store/actionCreators';
+import TopBanner from './c-cpns/top-banner';
 
-function YYRecommend(props) {
-    // hooks的redux写法
-    /** 
-     * useSelector说明
-     * 参数一：state
-     * 参数二：shallowEqual 浅层比较默认===，不添加可能导致无引用刷新，
-     */
-    const { topBanners } = useSelector(state => ({
-        // topBanners: state.get("recommend").get("topBanners")
-        topBanners: state.getIn(["recommend","topBanners"])
-    }), shallowEqual);
-    const dispatch = useDispatch();
-    useEffect(() => {
-        // 页面加载时候执行
-        dispatch(getTopBannerAction());
-        // 页面销毁之后执行
-        return () => {
-            console.log('YYRecommend销毁了')
-        }
-    }, [dispatch])
+function YYRecommend() {
     return (
         <div>
-            33: {topBanners.length}
+            <TopBanner />
         </div>
     )
 };

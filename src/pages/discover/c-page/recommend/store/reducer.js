@@ -1,5 +1,6 @@
+// immutable优化数据性能
 import { Map } from 'immutable';
-import { CHANGE_TOP_BANNERS, CHANGE_HOT_RECOMMEND } from './constans'
+import { CHANGE_TOP_BANNERS, CHANGE_HOT_RECOMMEND } from './constans';
 // 初始化仓库值
 const initStore = Map({
     topBanners: [],
