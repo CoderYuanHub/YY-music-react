@@ -5,6 +5,6 @@
 2.样式依赖: normalize.css、styled-components
 3.脚手架更改依赖: @craco/craco 
 4.组件库: antd
-5.redux的使用: react-redux、redux、 redux-thunk
+5.redux的使用: react-redux、redux、 redux-thunk、redux-immutable
 6.请求库：axios
-
+7.解决数据可变性问题: immutable(Immutable 实现的原理是 Persistent Data Structure（持久化数据结构)

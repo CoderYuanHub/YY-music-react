@@ -1,13 +1,17 @@
-import { CHANGE_HOT_RECOMMEND } from './constans'
+import { Map } from 'immutable';
+import { CHANGE_TOP_BANNERS, CHANGE_HOT_RECOMMEND } from './constans'
 // 初始化仓库值
-const initStore = {
+const initStore = Map({
+    topBanners: [],
     hotRecommends: []
-}
+})
 
 function reducer(store = initStore, action) {
     switch (action.type) {
+        case CHANGE_TOP_BANNERS:
+            return store.set("topBanners" , action.topBanners);
         case CHANGE_HOT_RECOMMEND:
-            return [...initStore.hotRecommends, action.hotRecommends]
+            return {...store, hotRecommends: []};
         default:
             return store;
     }

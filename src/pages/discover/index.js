@@ -1,13 +1,14 @@
 import React, { memo } from 'react';
 import { renderRoutes } from 'react-router-config';
 
+import { DiscoverTop, DiscoverWrapper } from './style';
 import { dicoverMenu } from '@/commom/local-data';
 
-import { DiscoverTop, DiscoverWrapper } from './style';
 import { NavLink } from 'react-router-dom';
 
 
 export default memo(function YYDiscover(props) {
+
     return (
         <DiscoverWrapper>
             <DiscoverTop>

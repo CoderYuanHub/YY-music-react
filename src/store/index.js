@@ -8,7 +8,11 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // 使用中间件,可以接收多个中间件
 const applyThunkMiddleware = applyMiddleware(thunk);
 
-// 创建store
+/** 
+ *  createStore创建store
+ *  参数一：reducer
+ *  参数二：加强函数，一般用于处理中间件和插件
+ */
 const store = createStore(reducer, composeEnhancers(applyThunkMiddleware));
 
 
