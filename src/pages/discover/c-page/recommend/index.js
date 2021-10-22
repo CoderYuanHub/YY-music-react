@@ -1,12 +1,23 @@
 import React, { memo } from 'react';
 
+
+import { RecommendWrapper } from './style';
 import TopBanner from './c-cpns/top-banner';
+import HotRecommend from './c-cpns/hot-recommend';
+import NewRadio from './c-cpns/new-radio';
+import TopMusic from './c-cpns/top-music';
 
 function YYRecommend() {
     return (
-        <div>
+        <RecommendWrapper>
             <TopBanner />
-        </div>
+            <div className="recommend-info wrap-v3">
+                <HotRecommend />
+                <NewRadio />
+                <TopMusic />
+            </div>
+
+        </RecommendWrapper>
     )
 };
 export default memo(YYRecommend);

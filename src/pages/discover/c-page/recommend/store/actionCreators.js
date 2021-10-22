@@ -1,6 +1,5 @@
-import { CHANGE_TOP_BANNERS, CHANGE_HOT_RECOMMEND } from './constans';
-import { getHotRecommends } from '@/services/recommend'
-import { getTopBanners } from '../../../../../services/recommend';
+import { CHANGE_TOP_BANNERS, CHANGE_HOT_RECOMMEND, CHANGE_NEW_ALBUM } from './constans';
+import { getTopBanners, getHotRecommends, getNewAlbum } from '@/services/recommend'
 
 // 获取banners的Actions
 const changeTopBannerAction = (res) => ({
@@ -13,10 +12,15 @@ const changeHotRecommendAction = (res) => ({
     hotRecommends: res.result
 });
 
+// 改变新碟上架action
+const changeNewAlbumAction = (res) => ({
+    type: CHANGE_NEW_ALBUM,
+    hotRecommends: res.albums
+})
+
 const getTopBannerAction = () => {
     return dispatch => {
         getTopBanners().then(res => {
-            console.error(res);
             dispatch(changeTopBannerAction(res));
         })
         
@@ -31,9 +35,20 @@ const getHotRecommendAction = (limit) => {
         })
     }
 }
+// 获取新碟上架数据
+const getNewAlbumAction = (limit) => {
+    return dispatch => {
+        getNewAlbum(limit).then(res => {
+            console.error(res);
+            dispatch(changeNewAlbumAction(res))
+        })
+        
+    }
+}
 
 
 export {
     getTopBannerAction,
-    getHotRecommendAction
+    getHotRecommendAction,
+    getNewAlbumAction
 }

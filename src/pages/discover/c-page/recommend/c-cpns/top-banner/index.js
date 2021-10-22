@@ -39,7 +39,7 @@ export default memo(function TopBanner() {
                 <TopBannerLeft>
                     <Carousel autoplaySpeed={5000} ref={bannerRef} autoplay effect="fade" beforeChange={bannerChange}>
                         {
-                            topBanners.map(item => {
+                            topBanners && topBanners.length && topBanners.map(item => {
                                 return (
                                     <a key={item.scm} href={item.url}>
                                         <img src={item.imageUrl} alt="img"></img>

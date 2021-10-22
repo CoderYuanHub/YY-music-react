@@ -1,6 +1,16 @@
 import styled from 'styled-components';
 
-export const RecommendWrapper = styled.div`
+const RecommendWrapper = styled.div`
+
+    .recommend-info {
+        padding: 20px 20px 40px;
+        background-color: #fff;
+    }
 
 `;
+
+export {
+    RecommendWrapper
+}
+
 

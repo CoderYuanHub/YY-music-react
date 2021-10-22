@@ -15,3 +15,12 @@ export function getHotRecommends(limit) {
         }
     })
 }
+// 获取新碟上架数据
+export function getNewAlbum(limit) {
+    return request({
+        url: "/top/album",
+        params: {
+            limit
+        }
+    })
+}

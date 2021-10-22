@@ -109,3 +109,27 @@ export const dicoverMenu = [
     link: "/discover/newdisc"
   },
 ]
+
+// 热门推荐中导航数据
+export const hotRecommend = [
+  {
+    title: "华语",
+    link: "/discover/recommend"
+  },
+  {
+    title: "流行",
+    link: "/discover/recommend"
+  },
+  {
+    title: "摇滚",
+    link: "/discover/recommend"
+  },
+  {
+    title: "民谣",
+    link: "/discover/recommend"
+  },
+  {
+    title: "电子",
+    link: "/discover/recommend"
+  },
+]
