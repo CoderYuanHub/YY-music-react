@@ -24,7 +24,7 @@ export default memo(function TopBanner() {
         }
     }, [dispatch]);
     // 其他hooks逻辑
-    const bannerRef = useRef()
+    const bannerRef = useRef();
     // 处理轮播图切换
     const bannerChange = useCallback(
         (from, to) => {
