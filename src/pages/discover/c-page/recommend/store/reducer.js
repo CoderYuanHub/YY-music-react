@@ -1,11 +1,12 @@
 // immutable优化数据性能
 import { Map } from 'immutable';
-import { CHANGE_TOP_BANNERS, CHANGE_HOT_RECOMMEND, CHANGE_NEW_ALBUM, CHANGE_TOP_NEW_LIST, CHANGE_TOP_SURGE_LIST, CHANGE_TOP_ORIGIN_LIST } from './constans';
+import { CHANGE_TOP_BANNERS, CHANGE_HOT_RECOMMEND, CHANGE_NEW_ALBUM, CHANGE_TOP_NEW_LIST, CHANGE_TOP_SURGE_LIST, CHANGE_TOP_ORIGIN_LIST, CHANGE_IN_SINGER } from './constans';
 // 初始化仓库值
 const initStore = Map({
     topBanners: [],
     hotRecommends: [],
     newAlbum: [],
+    inSingerList: [],
 
     topNewInfo: {},
     topSugerInfo: {},
@@ -27,6 +28,8 @@ function reducer(store = initStore, action) {
             return store.set("topSugerInfo", action.topSugerInfo);
         case CHANGE_TOP_ORIGIN_LIST:
             return store.set("topOriginInfo", action.topOriginInfo);
+        case CHANGE_IN_SINGER:
+            return store.set("inSingerList", action.inSingerList);
         default:
             return store;
     }

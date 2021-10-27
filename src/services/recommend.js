@@ -36,7 +36,7 @@ export function getNewAlbum(limit) {
  * 3 飙升榜
  * @return {*} 
  */
-export function getTopList (idx) {
+export function getTopList(idx) {
     return request({
         url: "/top/list",
         params: {
@@ -44,3 +44,15 @@ export function getTopList (idx) {
         }
     })
 }
+
+// 获取歌手数据
+export function getTopSinger(limit) {
+    return request({
+        url: "/top/artists",
+        params: {
+            limit
+        }
+    })
+}
+
+// 

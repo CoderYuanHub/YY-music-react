@@ -4,13 +4,15 @@ import {
     CHANGE_NEW_ALBUM,
     CHANGE_TOP_NEW_LIST,
     CHANGE_TOP_SURGE_LIST,
-    CHANGE_TOP_ORIGIN_LIST
+    CHANGE_TOP_ORIGIN_LIST,
+    CHANGE_IN_SINGER
 } from './constans';
 import {
     getTopBanners,
     getHotRecommends,
     getNewAlbum,
-    getTopList
+    getTopList,
+    getTopSinger
 } from '@/services/recommend';
 
 // 获取banners的Actions
@@ -28,15 +30,19 @@ const changeHotRecommendAction = (res) => ({
 const changeNewAlbumAction = (res) => ({
     type: CHANGE_NEW_ALBUM,
     newAlbums: res.albums
-})
+});
+
+// 改变入驻歌手action
+const changeInSingerAction = (res) => ({
+    type: CHANGE_IN_SINGER,
+    inSingerList: res.artists
+});
 
 // redux中的榜单
 const changeTopNewListAction = (res) =>({
     type: CHANGE_TOP_NEW_LIST,
     topNewInfo: res.playlist
-
-
-})
+});
 const changeTopSurgeListAction = (res) => ({
     type: CHANGE_TOP_SURGE_LIST,
     topSugerInfo: res.playlist
@@ -52,11 +58,18 @@ const getTopBannerAction = () => {
         getTopBanners().then(res => {
             dispatch(changeTopBannerAction(res));
         })
-
     }
 }
 
-
+// 获取入场歌手数据
+const getInSIngerAction = () => {
+    return dispatch => {
+        getTopSinger(5).then(res => {
+            console.error(res);
+            dispatch(changeInSingerAction(res));
+        })
+    }
+}
 
 // 通过redux-thunk进行拦截请求
 const getHotRecommendAction = (limit) => {
@@ -79,7 +92,6 @@ const getNewAlbumAction = (limit) => {
 const getTopListAction = (idx) => {
     return dispatch => {
         getTopList(idx).then(res => {
-            console.error(res);
             switch (idx) {
                 // 新歌榜
                 case 0:
@@ -105,5 +117,6 @@ export {
     getTopBannerAction,
     getHotRecommendAction,
     getNewAlbumAction,
-    getTopListAction
+    getTopListAction,
+    getInSIngerAction
 }
