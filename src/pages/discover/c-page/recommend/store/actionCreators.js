@@ -65,7 +65,6 @@ const getTopBannerAction = () => {
 const getInSIngerAction = () => {
     return dispatch => {
         getTopSinger(5).then(res => {
-            console.error(res);
             dispatch(changeInSingerAction(res));
         })
     }

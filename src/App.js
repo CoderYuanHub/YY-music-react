@@ -14,6 +14,7 @@ import store from '@/store'
 
 import YYAppHeader from '@/components/app-header';
 import YYAppFooter from '@/components/app-footer';
+import Player from '@/pages/player';
 
 
 export default memo(function App() {
@@ -25,6 +26,7 @@ export default memo(function App() {
                     {renderRoutes(routes)}
                 </Suspense>
                 <YYAppFooter />
+                <Player />
             </HashRouter>
         </Provider>
 
