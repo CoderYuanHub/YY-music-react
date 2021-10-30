@@ -62,6 +62,15 @@ const PlayerMain = styled.div`
                 background-position: -40px -204px;
             }
         }
+        .pause {
+            background-position: 0 -165px;
+            width: 36px;
+            height: 36px;
+            margin-top: 0;
+            &:hover {
+                background-position: -40px -165px;
+            }
+        }
         .next {
             background-position: -80px -130px;
             &:hover {
