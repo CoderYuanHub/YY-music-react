@@ -177,9 +177,27 @@ const PlayerMain = styled.div`
                     }
                 }
                 &:nth-child(6) {
-                    background: url(${require('@/assets/img/playbar_sprite.png').default}) -3px -344px no-repeat;
+                    background-position: ${props => {
+                        switch (props.sequence) {
+                            case 0:
+                                return "-3px -344px;";
+                            case 1:
+                                return "-66px -248px;";
+                            default:
+                                return "-66px -344px;";
+                        }
+                    }}
                     &:hover {
-                        background-position: -33px -344px;
+                        background-position: ${props => {
+                            switch (props.sequence) {
+                                case 0:
+                                    return "-33px -344px";
+                                case 1:
+                                    return "-93px -248px ";
+                                default:
+                                    return "-93px -344px";
+                            }
+                        }};
                     }
                 }
                 &:nth-child(7) {
@@ -188,6 +206,24 @@ const PlayerMain = styled.div`
                     &:hover {
                         background-position: -42px -98px;
                     }
+                }
+            }
+            .order {
+                background-position: -3px -344px !important;
+                &:hover {
+                    background-position: -33px -344px !important;
+                }
+            }
+            .random {
+                background-position: -66px -248px !important;
+                &:hover {
+                    background-position: -93px -248px !important;
+                }
+            }
+            .singer {
+                background-position: -66px -344px !important;
+                &:hover {
+                    background-position: -93px -344px !important;
                 }
             }
         }

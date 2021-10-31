@@ -1,8 +1,8 @@
 import React, { memo, useEffect, useRef, useState, useCallback } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 
-import { getSizeImage, formatDate, getPlaySong } from '../../utils/format-utils'
-import { getCurrentSong } from './store/actionCreators'
+import { getSizeImage, formatDate, getPlaySong } from '../../utils/format-utils';
+import { getCurrentSongAction, changeSequenceIndex, switchCurrentSongAction } from './store/actionCreators';
 import { Slider } from 'antd';
 
 import {
@@ -18,25 +18,33 @@ export default memo(function YYPlayer() {
     // 是否在拖动进度条
     const [isChanging, setIsChanging] = useState(false);
     // 播放/暂停
-    const [isplaying, setIsPlaying] = useState(false)
+    const [isplaying, setIsPlaying] = useState(false);
 
     // redux hooks
-    const { currentSong } = useSelector(state => ({
-        currentSong: state.getIn(["player", "currentSong"])
+    const { currentSong, sequence } = useSelector(state => ({
+        currentSong: state.getIn(["player", "currentSong"]),
+        sequence: state.getIn(["player", "sequence"])
     }), shallowEqual);
+
     const dispatch = useDispatch();
 
     // other hooks
     const palyerRef = useRef();
     useEffect(() => {
         // 获取播放音乐
-        dispatch(getCurrentSong(1456890009));
+        dispatch(getCurrentSongAction(1456890009));
         return () => {
         }
     }, [dispatch]);
     // 监听音乐的变化
     useEffect(() => {
         palyerRef.current.src = getPlaySong(currentSong?.id);
+        palyerRef.current.play().then(() => {
+            setIsPlaying(true);
+        }).catch(err => {
+            setIsPlaying(false);
+            console.error(err);
+        })
         return () => {
         }
     }, [currentSong])
@@ -78,17 +86,46 @@ export default memo(function YYPlayer() {
         palyerRef.current.play();
 
     }, [])
+    // 播放顺序调整
+    const handleSequence = (e) => {
+        e.preventDefault();
+        let index = sequence;
+        index++;
+        if (index > 2) {
+            index = 0;
+        }
+        dispatch(changeSequenceIndex(index));
+    }
+    // 音乐切换
+    const changeMusic = (e, type) => {
+        e.preventDefault();
+        dispatch(switchCurrentSongAction(type));
+    }
+    // 音乐结束时处理
+    const handleEnd = (e) => {
+        switch (sequence) {
+            // 单曲循环
+            case 2:
+                // 将当前音乐播放时间设置为0
+                palyerRef.current.currentTime = 0;
+                palyerRef.current.play();
+                break;
+            default:
+                dispatch(switchCurrentSongAction(1))
+                break;
+        }
+    }
     return (
         <PlayerWrapper>
             <div className="bg sprite_player"></div>
             <PlayerLock>
 
             </PlayerLock>
-            <PlayerMain className="wrap-v2">
+            <PlayerMain sequence={sequence} className="wrap-v2">
                 <div className="progress-left">
-                    <a className="pre sprite_player" href="/todo">上一首</a>
+                    <a onClick={e => changeMusic(e, -1)} className="pre sprite_player" href="/todo">上一首</a>
                     <a className={isplaying ? "pause sprite_player" : "play sprite_player"} onClick={e => handlePlay(e)} href="/todo">播放/暂停</a>
-                    <a className="next sprite_player" href="/todo">下一首</a>
+                    <a onClick={e => changeMusic(e, 1)} className="next sprite_player" href="/todo">下一首</a>
                 </div>
                 <div className="progress-content">
                     <div className="progress-content-img">
@@ -132,12 +169,17 @@ export default memo(function YYPlayer() {
                         <a href="/todo" title="分享">分享</a>
                         <a href="/todo">分割线</a>
                         <a href="/todo" title="声音">声音</a>
-                        <a href="/todo" title="循环">循环</a>
+                        {/* 方法一 */}
+                        {/* <a href="/todo" className={sequence === 0 ? "order" : (sequence === 1 ? "random" : "singer")} onClick={e => handleSequence(e)} title="循环">循环</a> */}
+                        {/* 方法二 */}
+                        <a href="/todo" className="sprite_player" onClick={e => handleSequence(e)} title="循环">循环</a>
                         <a href="/todo" title="歌单">歌单</a>
                     </div>
                 </div>
             </PlayerMain>
-            <audio ref={palyerRef} onTimeUpdate={e => onPlayTimeUpdate(e)} />
+            <audio ref={palyerRef}
+                   onTimeUpdate={e => onPlayTimeUpdate(e)}
+                   onEnded={e => handleEnd(e)} />
         </PlayerWrapper>
     )
 })

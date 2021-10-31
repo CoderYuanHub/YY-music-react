@@ -1,8 +1,13 @@
 import React, { memo } from 'react';
+
+import { getSizeImage } from '../../utils/format-utils';
+import {  getCurrentSongAction } from '../../pages/player/store/actionCreators'
+
 import { TopRankingWrapper, TopRankingHeader, TopRankingList } from './style';
-import { getSizeImage } from '../../utils/format-utils'
+import { useDispatch } from 'react-redux';
 
 export default memo(function YYTopRanking(props) {
+    // state and props
     const {
         info = {
             name: "",
@@ -10,6 +15,16 @@ export default memo(function YYTopRanking(props) {
             tracks: []
         }
     } = props;
+
+    // redux hooks
+    const dispatch = useDispatch();
+
+    // handle 
+    // 播放事件
+    const handlePlay = (e, info) => {
+        e.preventDefault();
+        dispatch(getCurrentSongAction(info.id));
+    }
     return (
         <TopRankingWrapper>
             <TopRankingHeader>
@@ -38,7 +53,7 @@ export default memo(function YYTopRanking(props) {
                                         <a href="/todo">{item.name}</a>
                                     </div>
                                     <div className="list-item-opt">
-                                        <a className="play sprite_02" href="/todo">播放</a>
+                                        <a className="play sprite_02" onClick={e => handlePlay(e, item)} href="/todo">播放</a>
                                         <a className="add sprite_icon2" href="/todo">添加</a>
                                         <a className="collect sprite_02" href="/todo">收藏</a>
                                     </div>

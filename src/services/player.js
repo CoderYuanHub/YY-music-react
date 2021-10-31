@@ -31,3 +31,19 @@ export function getSongUrl(id) {
         }
     })
 }
+
+/**
+ *
+ * 通过id来获取歌词
+ * @export
+ * @param {*} id
+ * @return {*} 
+ */
+export function getLyric (id) {
+    return request({
+        url: "/lyric",
+        params: {
+            id
+        }
+    })
+}

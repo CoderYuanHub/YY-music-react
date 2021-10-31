@@ -41,15 +41,15 @@ const changeInSingerAction = (res) => ({
 // redux中的榜单
 const changeTopNewListAction = (res) =>({
     type: CHANGE_TOP_NEW_LIST,
-    topNewInfo: res.playlist
+    topNewInfo: (res && res.playlist) || []
 });
 const changeTopSurgeListAction = (res) => ({
     type: CHANGE_TOP_SURGE_LIST,
-    topSugerInfo: res.playlist
+    topSugerInfo: (res && res.playlist) || []
 })
 const changeTopOriginListAction = (res) => ({
     type: CHANGE_TOP_ORIGIN_LIST,
-    topOriginInfo: res.playlist
+    topOriginInfo: (res && res.playlist) || []
 })
 
 // 获取的轮播图
