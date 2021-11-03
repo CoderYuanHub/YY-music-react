@@ -18,24 +18,24 @@ import {
 // 获取banners的Actions
 const changeTopBannerAction = (res) => ({
     type: CHANGE_TOP_BANNERS,
-    topBanners: res.banners
+    topBanners: res?.banners
 })
 // 获取recommend 的Action
 const changeHotRecommendAction = (res) => ({
     type: CHANGE_HOT_RECOMMEND,
-    hotRecommends: res.result
+    hotRecommends: res?.result
 });
 
 // 改变新碟上架action
 const changeNewAlbumAction = (res) => ({
     type: CHANGE_NEW_ALBUM,
-    newAlbums: res.albums
+    newAlbums: res?.albums
 });
 
 // 改变入驻歌手action
 const changeInSingerAction = (res) => ({
     type: CHANGE_IN_SINGER,
-    inSingerList: res.artists
+    inSingerList: res?.artists
 });
 
 // redux中的榜单

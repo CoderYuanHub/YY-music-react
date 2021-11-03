@@ -3,7 +3,9 @@ import {
     CHANGE_CURRENT_SONG,
     CHANGE_CURRENT_SONG_INDEX,
     CHANGE_PLAY_LIST,
-    CHANGE_SEQUENCE_INDEX
+    CHANGE_SEQUENCE_INDEX,
+    CHANGE_LYRIC_LIST,
+    CHANGE_CURRENT_LYRIC_INDEX
 } from './constans';
 
 const initStore = Map({
@@ -227,8 +229,8 @@ const initStore = Map({
     currentSongIndex: 0,
     // 播放顺序
     sequence: 0, //0是顺序播放，1是随机播放，2是单曲循环
-
-
+    lyricList: [], //分割后的歌词
+    currentLyricIndex: 0, //当前歌词位置
 });
 
 function reducer(state = initStore, action) {
@@ -241,6 +243,10 @@ function reducer(state = initStore, action) {
             return state.set("currentSongIndex", action.currentSongIndex);
         case CHANGE_SEQUENCE_INDEX:
             return state.set("sequence", action.sequence);
+        case CHANGE_LYRIC_LIST:
+            return state.set("lyricList", action.lyricList);
+        case CHANGE_CURRENT_LYRIC_INDEX:
+            return state.set("currentLyricIndex", action.currentLyricIndex)
         default:
             return state;
     }

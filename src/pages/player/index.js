@@ -2,7 +2,7 @@ import React, { memo, useEffect, useRef, useState, useCallback } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 
 import { getSizeImage, formatDate, getPlaySong } from '../../utils/format-utils';
-import { getCurrentSongAction, changeSequenceIndex, switchCurrentSongAction } from './store/actionCreators';
+import { getCurrentSongAction, changeSequenceIndex, switchCurrentSongAction, changeCurrentLyricIndexAction } from './store/actionCreators';
 import { Slider } from 'antd';
 
 import {
@@ -21,9 +21,11 @@ export default memo(function YYPlayer() {
     const [isplaying, setIsPlaying] = useState(false);
 
     // redux hooks
-    const { currentSong, sequence } = useSelector(state => ({
+    const { currentSong, sequence, lyricList, currentLyricIndex } = useSelector(state => ({
         currentSong: state.getIn(["player", "currentSong"]),
-        sequence: state.getIn(["player", "sequence"])
+        sequence: state.getIn(["player", "sequence"]),
+        lyricList: state.getIn(["player", "lyricList"]),
+        currentLyricIndex: state.getIn(["player", "currentLyricIndex"])
     }), shallowEqual);
 
     const dispatch = useDispatch();
@@ -71,6 +73,16 @@ export default memo(function YYPlayer() {
         // 当音乐播放结束暂停
         if (e.target.currentTime * 1000 >= duration) {
             palyerRef.current.pause();
+        }
+        // 根据当前时间显示歌词
+        let i = 0
+        for (; i < lyricList.length; i++) {
+            if(currenTime < lyricList[i].time) {
+                break;
+            }
+        }
+        if(i - 1 !== currentLyricIndex) {
+            dispatch(changeCurrentLyricIndexAction(i - 1));
         }
     }
 
