@@ -1,10 +1,11 @@
 import React, { memo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { getSizeImage } from '../../utils/format-utils';
-import {  getCurrentSongAction } from '../../pages/player/store/actionCreators'
+import { getSizeImage } from '@/utils/format-utils';
+import {  getCurrentSongAction, changePlayListAction } from '@/pages/player/store/actionCreators'
 
+import { message } from 'antd'
 import { TopRankingWrapper, TopRankingHeader, TopRankingList } from './style';
-import { useDispatch } from 'react-redux';
 
 export default memo(function YYTopRanking(props) {
     // state and props
@@ -16,14 +17,32 @@ export default memo(function YYTopRanking(props) {
         }
     } = props;
 
+ 
+
     // redux hooks
     const dispatch = useDispatch();
+    const { playList } = useSelector(state => ({
+        playList: state.getIn(["player", "playList"])
+    }))
+
 
     // handle 
     // 播放事件
     const handlePlay = (e, info) => {
         e.preventDefault();
         dispatch(getCurrentSongAction(info.id));
+    }
+    // 添加事件
+    const handleAdd = (e, info) => {
+        e.preventDefault();
+        const result = playList.some(item => item.id === info.id);
+        if(!result) {
+            playList.push(info);
+            console.error(playList);
+            dispatch(changePlayListAction(playList));
+        } else {
+            message.warning('当前音乐已经存在！');
+        }
     }
     return (
         <TopRankingWrapper>
@@ -54,7 +73,7 @@ export default memo(function YYTopRanking(props) {
                                     </div>
                                     <div className="list-item-opt">
                                         <a className="play sprite_02" onClick={e => handlePlay(e, item)} href="/todo">播放</a>
-                                        <a className="add sprite_icon2" href="/todo">添加</a>
+                                        <a className="add sprite_icon2" onClick={e => handleAdd(e, item)} href="/todo">添加</a>
                                         <a className="collect sprite_02" href="/todo">收藏</a>
                                     </div>
                                 </li>

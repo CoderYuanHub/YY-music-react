@@ -202,9 +202,19 @@ const PlayerMain = styled.div`
                 }
                 &:nth-child(7) {
                     width: 59px;
+                    text-indent: 0;
+                    text-align: center;
                     background: url(${require('@/assets/img/playbar_sprite.png').default}) -42px -68px no-repeat;
+                    
                     &:hover {
                         background-position: -42px -98px;
+                    }
+                    .number {
+                        color: #666;
+                        margin-left: 16px;
+                        font-size: 12px;
+                        display: inline-block;
+                        margin-top: 3px;
                     }
                 }
             }

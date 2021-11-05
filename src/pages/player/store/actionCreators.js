@@ -47,7 +47,6 @@ const changeCurrentLyricIndexAction = (currentLyricIndex) => ({
 
 // 切换音乐
 export const switchCurrentSongAction = (tag) => {
-    console.error(1);
     return (dispatch, getState) => {
         const sequence = getState().getIn(["player", "sequence"]);
         const playList = getState().getIn(["player", "playList"]);
@@ -70,8 +69,8 @@ export const switchCurrentSongAction = (tag) => {
                 if(currentIndex < 0) currentIndex = playList.length - 1;
                 dispatch(changeCurrentSongIndexAction(currentIndex));
                 dispatch(changeCurrentSongAction(playList[currentIndex]));
-                 // 请求歌词
-                 dispatch(getLyricAction(playList[currentIndex].id));
+                // 请求歌词
+                dispatch(getLyricAction(playList[currentIndex].id));
                 break;
         }
     }
@@ -129,5 +128,6 @@ export {
     getCurrentSongAction,
     changeSequenceIndex,
     getLyricAction,
-    changeCurrentLyricIndexAction
+    changeCurrentLyricIndexAction,
+    changePlayListAction
 }

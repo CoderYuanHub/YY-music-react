@@ -21,15 +21,15 @@ export default memo(function YYPlayer() {
     const [isplaying, setIsPlaying] = useState(false);
 
     // redux hooks
-    const { currentSong, sequence, lyricList, currentLyricIndex } = useSelector(state => ({
+    const { currentSong, sequence, lyricList, currentLyricIndex, playList } = useSelector(state => ({
         currentSong: state.getIn(["player", "currentSong"]),
         sequence: state.getIn(["player", "sequence"]),
         lyricList: state.getIn(["player", "lyricList"]),
-        currentLyricIndex: state.getIn(["player", "currentLyricIndex"])
+        currentLyricIndex: state.getIn(["player", "currentLyricIndex"]),
+        playList: state.getIn(["player", "playList"])
     }), shallowEqual);
 
     const dispatch = useDispatch();
-
     // other hooks
     const palyerRef = useRef();
     useEffect(() => {
@@ -49,8 +49,14 @@ export default memo(function YYPlayer() {
         })
         return () => {
         }
-    }, [currentSong])
-
+    }, [currentSong]);
+    // 监听音乐列表的变化
+    useEffect(() => {
+        console.error('playList', playList.length);
+        return () => {
+            
+        }
+    }, [playList])
     // other handle 
     const duration = currentSong.dt || 0;
 
@@ -96,7 +102,7 @@ export default memo(function YYPlayer() {
         setIsChanging(false);
         palyerRef.current.currentTime = value / 1000;
         palyerRef.current.play();
-
+        setIsPlaying(true);
     }, [])
     // 播放顺序调整
     const handleSequence = (e) => {
@@ -185,7 +191,11 @@ export default memo(function YYPlayer() {
                         {/* <a href="/todo" className={sequence === 0 ? "order" : (sequence === 1 ? "random" : "singer")} onClick={e => handleSequence(e)} title="循环">循环</a> */}
                         {/* 方法二 */}
                         <a href="/todo" className="sprite_player" onClick={e => handleSequence(e)} title="循环">循环</a>
-                        <a href="/todo" title="歌单">歌单</a>
+                        <a href="/todo" title="歌单">
+                            <span className="number">
+                                {playList.length}
+                            </span>
+                        </a>
                     </div>
                 </div>
             </PlayerMain>
