@@ -129,7 +129,8 @@ export default memo(function YYPlayer() {
                 palyerRef.current.play();
                 break;
             default:
-                dispatch(switchCurrentSongAction(1))
+                setCurrenTime(0);
+                dispatch(switchCurrentSongAction(1));
                 break;
         }
     }
