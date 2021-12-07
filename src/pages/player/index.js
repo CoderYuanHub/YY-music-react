@@ -45,14 +45,13 @@ export default memo(function YYPlayer() {
             setIsPlaying(true);
         }).catch(err => {
             setIsPlaying(false);
-            console.error(err);
         })
         return () => {
         }
     }, [currentSong]);
     // 监听音乐列表的变化
     useEffect(() => {
-        console.error('playList', playList.length);
+        // console.error('playList', playList.length);
         return () => {
             
         }

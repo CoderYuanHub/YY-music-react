@@ -19,7 +19,8 @@ export default memo(function YYDiscover(props) {
                         )
                     })}
                 </div>
-                
+
+
             </DiscoverTop>
             {renderRoutes(props.route.routes)}
         </DiscoverWrapper>
