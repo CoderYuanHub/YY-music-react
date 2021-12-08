@@ -63,7 +63,7 @@ export const footerLinks = [
       isRouter: false
     }
   ]
-  
+
   export const footerImages = [
     {
       link: "https://web-amped.music.163.com/"
@@ -166,4 +166,109 @@ export const hotRadios = [
     position: "独立DJ，CRI环球旅游广播特邀DJ",
     url: "/user/home?id=2313954"
   }
+]
+
+// 排行榜
+export const TopList = [
+    {
+        title: '云音乐特色榜',
+        list: [
+            {
+                name: "飙升榜",
+                description: "每天更新",
+                img: "https://p2.music.126.net/DrRIg6CrgDfVLEph9SNh7w==/18696095720518497.jpg?param=40y40"
+            },
+            {
+                name: "新歌榜",
+                description: "每天更新",
+                img: "https://p2.music.126.net/N2HO5xfYEqyQ8q6oxCw8IQ==/18713687906568048.jpg?param=40y40"
+            },
+            {
+                name: "原创榜",
+                description: "每天更新",
+                img: "https://p2.music.126.net/sBzD11nforcuh1jdLSgX7g==/18740076185638788.jpg?param=40y40"
+            },
+            {
+                name: "热歌榜",
+                description: "每天更新",
+                img: "https://p2.music.126.net/GhhuF6Ep5Tq9IEvLsyCN7w==/18708190348409091.jpg?param=40y40"
+            }
+        ]
+    },
+    {
+        title: "全球媒体榜",
+        list: [
+            {
+                name: "黑胶VIP爱听榜",
+                description: "每周四更新",
+                img: "https://p2.music.126.net/G91csin09maPrNgqcUKnBQ==/109951165698553069.jpg?param=40y40"
+            },
+            {
+                name: "云音乐说唱榜",
+                description: "每周五更新",
+                img: "https://p2.music.126.net/EJyXfGYsiHxxxoCiTAz6Kg==/109951165611553137.jpg?param=40y40"
+            },
+            {
+                name: "云音乐古典榜",
+                description: "每周四更新",
+                img: "https://p2.music.126.net/7XQ7j5GKsiWQ6hLMtjGGKQ==/109951165611553527.jpg?param=40y40"
+            },
+            {
+                name: "云音乐电音榜",
+                description: "每周五更新",
+                img: "https://p2.music.126.net/FUTBe-hYwYZ7kidXNz2f0g==/109951165611546880.jpg?param=40y40"
+            },
+            {
+                name: "云音乐ACG榜",
+                description: "每周四更新",
+                img: "https://p2.music.126.net/pAFaa_EVMj0ktkDo381dnw==/109951165611551680.jpg?param=40y40"
+            },
+            {
+                name: "云音乐韩语榜",
+                description: "每周四更新",
+                img: "https://p2.music.126.net/v--zfW0Y0jbexl3CiALGlw==/109951165611550672.jpg?param=40y40"
+            },
+            {
+                name: "云音乐国电榜",
+                description: "每周五更新",
+                img: ""
+            },
+            {
+                name: "UK排行榜",
+                description: "每周四更新",
+                img: ""
+            },
+            {
+                name: "美国Billboard榜",
+                description: "每周四更新",
+                img: ""
+            },
+            {
+                name: "美国Billboard榜",
+                description: "每周四更新",
+                img: ""
+            },
+            {
+                name: "Beatport全球电子舞曲榜",
+                description: "更新19首",
+                img: ""
+            },
+            {
+                name: "KTV唛榜",
+                description: "每周四更新",
+                img: ""
+            },
+            {
+                name: "日本Oricon榜",
+                description: "每周四更新",
+                img: ""
+            },
+            {
+                name: "云音乐欧美热歌榜",
+                description: "每周四更新",
+                img: ""
+            }
+
+        ]
+    }
 ]
