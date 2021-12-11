@@ -3,17 +3,16 @@ import { getTopClassifyList } from '@/services/top'
 import { CHANGE_TOP_MUSIC_LIST } from './constans';
 
 //改变榜单分类列表数据
-const changeTopMusicClassifyListAction = (topMusicList) => ({
+const changeTopMusicClassifyListAction = (classifyList) => ({
     type: CHANGE_TOP_MUSIC_LIST,
-    topMusicList
+    classifyList
 });
 
 //获取榜当目录数据
 const getTopMusicClassifyListAction = () => {
     return dispatch => {
         getTopClassifyList().then(res => {
-            console.error('获取榜单分类数据', res)
-            if(res && res.list && res.list.length) {
+            if (res && res.list) {
                 dispatch(changeTopMusicClassifyListAction(res.list));
             }
         })

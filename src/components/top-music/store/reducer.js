@@ -2,15 +2,16 @@ import { Map } from 'immutable';
 import { CHANGE_TOP_MUSIC_LIST } from './constans'
 
 const initStore = Map({
-    topMusicList: []
-})
+    classifyList: []
+});
 
-function reducer(store = initStore, action) {
+function reducer(state = initStore, action) {
+    console.error('获取数据', action)
     switch (action.type) {
         case CHANGE_TOP_MUSIC_LIST:
-            return store.set("topMusicList", action.topMusicList);
+            return state.set("classifyList", action.classifyList);
         default:
-            return store;
+            return state;
     }
 }
 export default reducer;
